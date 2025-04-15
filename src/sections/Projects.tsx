@@ -1,4 +1,4 @@
-import React from "react"
+
 const Projects = () => {
   return (
     <section id="projects" className="max-w-4xl mx-auto">

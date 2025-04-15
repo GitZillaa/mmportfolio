@@ -1,4 +1,4 @@
-import React from "react"
+
 const Skills = () => {
     return (
       <section id="skills" className="max-w-2xl mx-auto">

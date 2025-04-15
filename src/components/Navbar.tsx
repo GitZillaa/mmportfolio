@@ -1,4 +1,3 @@
-import React from "react"
 const Navbar = () => {
     return (
       <nav className="sticky top-0 bg-white shadow p-4 flex gap-4 justify-center z-50">
