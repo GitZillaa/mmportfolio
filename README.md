@@ -19,9 +19,11 @@ Da Tailwind ab Version 4 nicht mehr direkt als PostCSS-Plugin funktioniert, wurd
 # import tailwindcss from '@tailwindcss/postcss'
 # import autoprefixer from 'autoprefixer'
 
-#  export default {
+# export default {
 #   plugins: [tailwindcss(), autoprefixer()],
-#  }
+# }
+
+
 In der src/style.css wurden die Tailwind Direktiven eingebunden:
 
 # @import "tailwindcss";
@@ -34,7 +36,6 @@ src/
 ├── App.tsx         # Gesamtlayout
 ├── main.tsx        # Einstiegspunkt
 └── style.css       # Tailwind-Einstieg
-In allen .tsx-Dateien wurde import React from 'react' eingefügt, um JSX korrekt zu nutzen. Zusätzlich wurde in der tsconfig.json "jsx": "react-jsx" gesetzt.
 
 Ein häufiger Fehler war, dass kein <div id="root"></div> im index.html vorhanden war. Dieser wurde ergänzt, damit main.tsx korrekt mounten kann.
 
@@ -45,9 +46,48 @@ Falls React oder ReactDOM fehlten, wurden diese nachträglich installiert:
 
 Nach der Einrichtung funktioniert das Projekt einwandfrei im Browser. Alle Sektionen sind verbunden, die Navigation funktioniert, Tailwind-Klassen greifen wie gewünscht und das Layout ist responsiv.
 
-Dieses Projekt kann nun weiter ausgebaut oder auf GitHub Pages veröffentlicht werden. Als mögliche Erweiterungen bieten sich Dark Mode, ein CV-Download, mehr Projektcards und Animationen an.
+## 🚀 Deployment auf GitHub Pages
 
-© 2025 Max Mustermann – Webentwickler | React | DevOps
+Das Projekt wurde über GitHub Pages veröffentlicht. Dafür wurde das Paket `gh-pages` verwendet und das Projekt so konfiguriert, dass es über den `dist/`-Ordner veröffentlicht wird.
+
+### Schritte zum Deployment:
+
+1. Installation der gh-pages-Dev-Dependency:
+
+npm install --save-dev gh-pages
+
+In der Datei vite.config.ts wurde das base-Feld gesetzt – wichtig ist hier, dass der Name des GitHub-Repositories korrekt angegeben wird:
+
+# import { defineConfig } from 'vite'
+# import react from '@vitejs/plugin-react'
+
+# export default defineConfig({
+#   base: '/mmportfolio/', // Repo-Name mit Slash am Anfang
+#   plugins: [react()],
+# })
+
+In der package.json wurden die folgenden Felder ergänzt:
+
+# "homepage": "https://dein-github-username.github.io/mmportfolio",
+ 
+# "scripts": {
+#   "deploy": "gh-pages -d dist"
+# }
+
+Die Anwendung wurde wie folgt deployed:
+
+npm run build
+npm run deploy
+
+Dadurch wird der Produktionsbuild im dist/-Ordner erstellt und anschließend automatisch auf den Branch gh-pages gepusht.
+
+Die Seite ist dann unter folgender URL erreichbar:
+
+https://dein-github-username.github.io/mmportfolio
+
+Das ganze ist ein ideales Fundament für einen One-Page CV der übers web erreichbar ist!
+
+© 2025 Marc Ehrlich – Webentwickler | React | DevOps
 
 
 
